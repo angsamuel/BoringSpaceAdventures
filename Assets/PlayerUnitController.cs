@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerUnitController : MonoBehaviour {
 	Unit unit;
+	public bool active = true;
 	// Use this for initialization
 	void Start () {
 		unit = GetComponent<Unit> ();
 	}
 	
 	void Update () {
-		ScanInput ();
+		if (active) {
+			ScanInput ();
+		}
 	}
 
 	bool canJump = true;

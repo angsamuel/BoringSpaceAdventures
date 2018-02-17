@@ -46,9 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Beacon.cs" />
      <Compile Include="Assets\ControlPanel.cs" />
+     <Compile Include="Assets\CryoPod.cs" />
+     <Compile Include="Assets\LevelController.cs" />
      <Compile Include="Assets\ObjectFader.cs" />
      <Compile Include="Assets\PlayerUnitController.cs" />
+     <Compile Include="Assets\Ship.cs" />
      <Compile Include="Assets\Unit.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

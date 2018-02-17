@@ -8,6 +8,7 @@ public class ObjectFader : MonoBehaviour {
 	Color c;
 	float fadeTime = .5f;
 	// Use this for initialization
+	public List<GameObject> spawnObjects;
 	void Start () {
 		currentAlpha = 1f;
 		material = GetComponent<Renderer> ().material;
@@ -22,7 +23,11 @@ public class ObjectFader : MonoBehaviour {
 
 	bool canEnter = true;
 	void OnTriggerStay(Collider other){
+
 		if (other.tag == "Player" && canEnter) {
+			for (int i = 0; i < spawnObjects.Count; i++) {
+				spawnObjects [i].SetActive (true);
+			}
 			canEnter = false;
 			StartCoroutine (FadeOut ());
 		}
@@ -30,7 +35,9 @@ public class ObjectFader : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other){
+
 		if (other.tag == "Player") {
+
 			canEnter = true;
 			StartCoroutine (FadeIn ());
 		}
@@ -43,6 +50,9 @@ public class ObjectFader : MonoBehaviour {
 			yield return null;
 			currentAlpha += Time.deltaTime/fadeTime;
 			material.color = new Color (c.r, c.b, c.g, currentAlpha);
+		}
+		for (int i = 0; i < spawnObjects.Count; i++) {
+			spawnObjects [i].SetActive (false);
 		}
 	}
 
