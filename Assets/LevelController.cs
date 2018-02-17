@@ -2,26 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class LevelController : MonoBehaviour {
 	public Text descriptionText;
 	public Text controlText;
+	public Text oxygenText;
 	public PlayerUnitController puc;
+	public Unit playerUnit;
 
 	Coroutine lastDescriptionRoutine;
 	Coroutine lastControlRoutine;
 
 	Material groundMaterial;
+	GameObject mainLight;
 
 	Image coverPanel;
 	// Use this for initialization
 	void Start () {
 		groundMaterial = GameObject.Find ("Ground").GetComponent<Renderer> ().material;
+		mainLight = GameObject.Find ("Directional Light");
+
 		RandomizeGroundColor ();
+		RandomizeLighting ();
+
 		descriptionText.text = "";
 		controlText.text = "";
 		puc = GameObject.Find ("PlayerUnit").GetComponent<PlayerUnitController> ();
+		playerUnit = puc.GetComponent<Unit> ();
 		coverPanel = GameObject.Find ("CoverPanel").GetComponent<Image> ();
 		coverPanel.color = Color.black;
 		puc.active = false;
@@ -31,10 +40,18 @@ public class LevelController : MonoBehaviour {
 	void RandomizeGroundColor(){
 		groundMaterial.color = new Color (Random.Range (0.0f, 0.8f), Random.Range (0.0f, 0.8f), Random.Range (0.0f, 0.8f));
 	}
+
+	void RandomizeLighting(){
+		mainLight.transform.Rotate(new Vector3 (Random.Range (0.0f, 2*Mathf.PI), Random.Range (0.0f, 2*Mathf.PI), Random.Range (0.0f, 2*Mathf.PI)));
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		oxygenText.text = playerUnit.GetOxygenTime ();
+
+		if (Input.GetAxisRaw ("Cancel") != 0) {
+			SceneManager.LoadScene ("MainMenu");
+		}
 	}
 
 	public void ClearText(){
@@ -123,6 +140,19 @@ public class LevelController : MonoBehaviour {
 			yield return null;
 		}
 		coverPanel.color = Color.black;
+		SceneManager.LoadScene ("Planet");
 	}
+
+	public void DeathBlack(){
+		coverPanel.color = Color.black;
+		StartCoroutine (BackToMainMenu ());
+	}
+
+	IEnumerator BackToMainMenu(){
+		yield return new WaitForSeconds (3);
+		SceneManager.LoadScene ("MainMenu");
+	}
+
+
 
 }

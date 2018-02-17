@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour {
 	LevelController lc;
@@ -35,10 +36,12 @@ public class Ship : MonoBehaviour {
 		lc.WriteDescription (launchDescription);
 
 		playerUnit.GetComponent<PlayerUnitController> ().active = false;
-		while (transform.position.y < 400) {
+
+		while (transform.position.y < 350) {
 			Debug.Log ("Launching");
 			yield return new WaitForSeconds (0.1f);
-			rb.AddForce (new Vector3 (0, launchForce, 0));
+			//rb.AddForce (new Vector3 (0, launchForce, 0));
+			rb.velocity = new Vector3(0,30,0);
 		}
 		rb.velocity = new Vector3 (0, 0, 0);
 		rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ

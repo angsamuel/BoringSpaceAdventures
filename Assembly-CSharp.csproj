@@ -50,6 +50,7 @@
      <Compile Include="Assets\ControlPanel.cs" />
      <Compile Include="Assets\CryoPod.cs" />
      <Compile Include="Assets\LevelController.cs" />
+     <Compile Include="Assets\MainMenuController.cs" />
      <Compile Include="Assets\ObjectFader.cs" />
      <Compile Include="Assets\PlayerUnitController.cs" />
      <Compile Include="Assets\Ship.cs" />
