@@ -5,7 +5,8 @@ using UnityEngine;
 public class Unit : MonoBehaviour {
 	Rigidbody rb;
 	public float speed = 1;
-	public float oxygen = 300f;
+	float maxOxygen = 301;
+	public float oxygen = 301f;
 	bool playerUnit;
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,7 @@ public class Unit : MonoBehaviour {
 	// Update is called once per frame
 
 	void Update(){
-		
+		UpdateOxygen ();
 	}
 
 	public void UpdateOxygen(){
@@ -24,6 +25,10 @@ public class Unit : MonoBehaviour {
 		} else {
 			Die ();
 		}
+	}
+
+	public void FillOxygen(){
+		oxygen = maxOxygen;
 	}
 
 	void Die(){
@@ -64,7 +69,7 @@ public class Unit : MonoBehaviour {
 		} else {
 			secondsString = ((int)seconds).ToString ();
 		}
-		return minutesString + ":" + secondsString;
+		return "O2 " +  minutesString + ":" + secondsString;
 	}
 			
 

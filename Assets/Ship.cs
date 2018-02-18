@@ -39,7 +39,7 @@ public class Ship : MonoBehaviour {
 
 		while (transform.position.y < 350) {
 			Debug.Log ("Launching");
-			yield return new WaitForSeconds (0.1f);
+			yield return null;
 			//rb.AddForce (new Vector3 (0, launchForce, 0));
 			rb.velocity = new Vector3(0,30,0);
 		}
