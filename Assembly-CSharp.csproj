@@ -52,8 +52,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Beacon.cs" />
+     <Compile Include="Assets\BreadCrumb.cs" />
      <Compile Include="Assets\ControlPanel.cs" />
      <Compile Include="Assets\CryoPod.cs" />
+     <Compile Include="Assets\Equipment.cs" />
+     <Compile Include="Assets\EquipmentRack.cs" />
      <Compile Include="Assets\LevelController.cs" />
      <Compile Include="Assets\MainMenuController.cs" />
      <Compile Include="Assets\ObjectFader.cs" />

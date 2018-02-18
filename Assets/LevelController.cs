@@ -15,7 +15,7 @@ public class LevelController : MonoBehaviour {
 	Coroutine lastDescriptionRoutine;
 	Coroutine lastControlRoutine;
 
-	Material groundMaterial;
+	public Material groundMaterial;
 	GameObject mainLight;
 
 	Image coverPanel;
