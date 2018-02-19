@@ -6,6 +6,7 @@ public class PlayerUnitController : MonoBehaviour {
 	Unit unit;
 	public bool active = true;
 	LevelController lc;
+
 	// Use this for initialization
 	void Start () {
 		lc = GameObject.Find ("LevelController").GetComponent<LevelController> ();
@@ -25,6 +26,12 @@ public class PlayerUnitController : MonoBehaviour {
 				lc.oxygenText.color = Color.white;
 			} else {
 				lc.oxygenText.color = Color.clear;
+			}
+
+
+			if(Input.GetAxisRaw ("UseEquipment") != 0){
+				unit.UseEquipment ();
+				Debug.Log ("pressed");
 			}
 
 			if (Input.GetAxisRaw ("Horizontal") < 0) {

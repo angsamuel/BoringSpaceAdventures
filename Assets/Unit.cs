@@ -8,6 +8,8 @@ public class Unit : MonoBehaviour {
 	float maxOxygen = 301;
 	public float oxygen = 301f;
 	bool playerUnit;
+
+	public List<Equipment> equipmentList;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
@@ -29,6 +31,12 @@ public class Unit : MonoBehaviour {
 
 	public void FillOxygen(){
 		oxygen = maxOxygen;
+	}
+
+	int selectionIndex = 0;
+		
+	public void UseEquipment(){
+		equipmentList [selectionIndex].Use (this);
 	}
 
 	void Die(){
