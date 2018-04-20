@@ -9,8 +9,10 @@ public class LevelController : MonoBehaviour {
 	public Text descriptionText;
 	public Text controlText;
 	public Text oxygenText;
+	public Text hashText;
 	public PlayerUnitController puc;
 	public Unit playerUnit;
+	public CryoPod cryopod;
 
 	Coroutine lastDescriptionRoutine;
 	Coroutine lastControlRoutine;
@@ -19,9 +21,11 @@ public class LevelController : MonoBehaviour {
 	GameObject mainLight;
 
 	Image coverPanel;
+	public Ship ship;
 	// Use this for initialization
+	CryptoClass cc;
 	void Start () {
-		CryptoClass cc = new CryptoClass ();
+		cc = new CryptoClass ();
 		Debug.Log(cc.GetCode(100,100));
 		groundMaterial = GameObject.Find ("Ground").GetComponent<Renderer> ().material;
 		mainLight = GameObject.Find ("Directional Light");
@@ -49,6 +53,8 @@ public class LevelController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//hashText.text = cc.GetCode ((int)playerUnit.transform.position.x, (int)playerUnit.transform.position.z);
 		oxygenText.text = playerUnit.GetOxygenTime ();
 
 		if (Input.GetAxisRaw ("Cancel") != 0) {
@@ -129,7 +135,7 @@ public class LevelController : MonoBehaviour {
 			yield return null;
 
 		}
-		GameObject.Find ("CryoPod").GetComponent<CryoPod> ().DefrostPlayer ();
+		cryopod.DefrostPlayer ();
 
 		coverPanel.color = Color.clear;
 	}

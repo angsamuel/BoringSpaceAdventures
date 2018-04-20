@@ -22,9 +22,11 @@ public class ObjectFader : MonoBehaviour {
 	}
 
 	bool canEnter = true;
+
 	void OnTriggerStay(Collider other){
 
 		if (other.tag == "Player" && canEnter) {
+			
 			for (int i = 0; i < spawnObjects.Count; i++) {
 				spawnObjects [i].SetActive (true);
 			}

@@ -9,6 +9,8 @@ public class Unit : MonoBehaviour {
 	public float oxygen = 301f;
 	bool playerUnit;
 
+	public Gun gun;
+
 	public List<Equipment> equipmentList;
 	// Use this for initialization
 	void Start () {

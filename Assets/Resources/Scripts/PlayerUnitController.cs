@@ -13,7 +13,7 @@ public class PlayerUnitController : MonoBehaviour {
 		unit = GetComponent<Unit> ();
 		lc.oxygenText.color = Color.clear;
 	}
-	
+
 	void Update () {
 			ScanInput ();
 	}
@@ -21,11 +21,16 @@ public class PlayerUnitController : MonoBehaviour {
 	bool canJump = true;
 	void ScanInput(){
 		if (active) {
+			unit.gun.Aim (Camera.main.ScreenToWorldPoint (Input.mousePosition));
 
 			if (Input.GetAxisRaw ("Stats") != 0) {
 				lc.oxygenText.color = Color.white;
 			} else {
 				lc.oxygenText.color = Color.clear;
+			}
+
+			if (Input.GetAxisRaw ("Fire1") != 0) {
+				unit.gun.Shoot ();
 			}
 
 

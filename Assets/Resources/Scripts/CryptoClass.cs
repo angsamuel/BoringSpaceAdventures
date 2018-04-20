@@ -48,8 +48,6 @@ public class CryptoClass {
 			output = output + code [i];
 		}
 
-
-		Debug.Log (output.ToUpper());
 		return output.Substring(0,4).ToUpper() + "-" + output.Substring(4, 4).ToUpper();
 	}
 

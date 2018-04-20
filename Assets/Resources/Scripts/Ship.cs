@@ -11,7 +11,7 @@ public class Ship : MonoBehaviour {
 
 	public string launchDescription;
 	public string launchControl;
-
+	public List<BoxCollider> walls;
 	CryoPod cryoPod;
 	// Use this for initialization
 	void Start () {
@@ -20,10 +20,16 @@ public class Ship : MonoBehaviour {
 		lc = GameObject.Find ("LevelController").GetComponent<LevelController> ();
 		cryoPod = GameObject.Find ("CryoPod").GetComponent<CryoPod> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
+	}
+
+	public void WallsActive(bool b){
+		for (int i = 0; i < walls.Count; i++) {
+			walls [i].enabled = b;
+		}
 	}
 
 	public void Launch(){
@@ -31,6 +37,8 @@ public class Ship : MonoBehaviour {
 	}
 
 	IEnumerator LaunchRoutine(){
+		WallsActive (true);
+
 		cryoPod.active = true;
 		lc.WriteControl (launchControl);
 		lc.WriteDescription (launchDescription);
