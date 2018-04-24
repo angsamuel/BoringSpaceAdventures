@@ -40,8 +40,10 @@ public class CryoPod : MonoBehaviour {
 	}
 
 	public void DefrostPlayer(){
-		lc.ship.WallsActive (false);
-		StartCoroutine (DefrostRoutine ());
+		if (lc.ship != null) {
+			lc.ship.WallsActive (false);
+			StartCoroutine (DefrostRoutine ());
+		}
 	}
 
 

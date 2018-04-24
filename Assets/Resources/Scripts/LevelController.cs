@@ -135,9 +135,11 @@ public class LevelController : MonoBehaviour {
 			yield return null;
 
 		}
-		cryopod.DefrostPlayer ();
+		if (cryopod != null) {
+			cryopod.DefrostPlayer ();
 
-		coverPanel.color = Color.clear;
+			coverPanel.color = Color.clear;
+		}
 	}
 
 	IEnumerator FadeToBlackRoutine(){

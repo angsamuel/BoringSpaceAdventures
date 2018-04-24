@@ -12,16 +12,32 @@ public class PlayerUnitController : MonoBehaviour {
 		lc = GameObject.Find ("LevelController").GetComponent<LevelController> ();
 		unit = GetComponent<Unit> ();
 		lc.oxygenText.color = Color.clear;
+
 	}
 
 	void Update () {
 			ScanInput ();
+		active = true;
+	}
+
+	void Aim(){
+		Ray cameraRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+		Plane groundPlane = new Plane (Vector3.up, Vector3.zero);
+		float rayLength; 
+
+		if (groundPlane.Raycast (cameraRay, out rayLength)) {
+			Vector3 pointToLook = cameraRay.GetPoint (rayLength);
+			unit.gun.Aim (pointToLook);
+			Debug.DrawLine (cameraRay.origin, pointToLook, Color.blue);
+		}
 	}
 
 	bool canJump = true;
 	void ScanInput(){
 		if (active) {
-			unit.gun.Aim (Camera.main.ScreenToWorldPoint (Input.mousePosition));
+			Aim ();
+			//unit.gun.Aim (Input.mousePosition);
+			//Debug.Log (Input.mousePosition);
 
 			if (Input.GetAxisRaw ("Stats") != 0) {
 				lc.oxygenText.color = Color.white;
